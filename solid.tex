@@ -1,0 +1,80 @@
+\documentclass[calcdimensions,landscape,letterpaper]{powersem}
+\usepackage{color}
+\usepackage[pdftex]{thumbpdf} % For thumbnails
+\usepackage[pdftex]{hyperref} % For links.
+\usepackage[display,coloremph,whitebackground]{texpower} % colormath
+\usepackage{fixseminar}
+\usepackage{tpslifonts}
+\usepackage[pdftex,final]{graphicx} % For including graphics.
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{eurosym}
+\usepackage{booktabs} % rules in tables
+\usepackage{multirow} % multi-row cells
+\usepackage{rotating} % text rotation
+
+\title{The 5 SOLID Principles}
+\author{Jan Wedekind}
+\date{Thursday, Feb 22nd 2022}
+
+\DeclareGraphicsExtensions{.jpg,.pdf,.png}
+\pdfcompresslevel=9
+
+\hypersetup{
+   pdftitle          = {\thetitle},
+   pdfsubject        = {After Catchup Presentation 22nd Feb 2022},
+   pdfauthor         = {Jan Wedekind},
+   pdfkeywords       = {},
+   pdfcreator        = {okular},
+   pdfproducer       = {LaTeX with hyperref and thumbpdf},
+   bookmarksopen     = false,
+   bookmarksnumbered = true,
+   colorlinks        = true,
+   pdfstartpage      = {1},
+   pdfpagemode       = {FullScreen}
+}
+
+% \textregistered for (R)
+% \copyright for (C)
+% \texttrademark for (TM) 
+
+\slidesmag{3}
+\backgroundstyle{none}
+\slideframe{none}
+\pagestyle{empty}
+
+% WTF?
+\mklength{\slideleftmargin}{-2cm}
+\mklength{\sliderightmargin}{-2cm}
+\mklength{\slidetopmargin}{4.5cm}
+\mklength{\slidebottommargin}{2.37cm}
+
+\definecolor{grey}{gray}{0.5}
+\definecolor{orange}{cmyk}{0,0.6,0,0}
+\definecolor{darkblue}{cmyk}{1,0.7,0,0.33}
+\definecolor{darkgreen}{cmyk}{1,0,1,0.5}
+\renewcommand{\currentpagevalue}{\value{slide}}
+\newcommand{\thecurrentheading}{}
+\newcommand{\heading}[1]{\renewcommand{\thecurrentheading}{#1}}
+\newcommand{\subheading}[1]{\concept{#1}}
+\newcommand{\black}[1]{\textcolor{black}{#1}}
+\newcommand{\grey}[1]{\textcolor{grey}{#1}}
+\newcommand{\red}[1]{\textcolor{red}{#1}}
+\newcommand{\green}[1]{\textcolor{green}{#1}}
+\newcommand{\blue}[1]{\textcolor{blue}{#1}}
+\newcommand{\orange}[1]{\textcolor{orange}{#1}}
+\newcommand{\darkblue}[1]{\textcolor{darkblue}{#1}}
+\newcommand{\darkgreen}[1]{\textcolor{darkgreen}{#1}}
+
+\begin{document}
+
+\begin{slide}
+  \pdfbookmark[1]{\thetitle}{title}
+  \heading{\thetitle}
+  \begin{center}
+    \maketitle
+  \end{center}
+\end{slide}
+
+\end{document}
