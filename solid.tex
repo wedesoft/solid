@@ -7,6 +7,7 @@
 \usepackage{tpslifonts}
 \usepackage[pdftex,final]{graphicx} % For including graphics.
 \usepackage[utf8]{inputenc}
+\usepackage{listings}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{eurosym}
@@ -35,25 +36,37 @@
    pdfpagemode       = {FullScreen}
 }
 
+\lstset {
+  language=Python,
+  basicstyle=\tiny
+}
+
 % \textregistered for (R)
 % \copyright for (C)
 % \texttrademark for (TM) 
 
-\slidesmag{3}
+\DeclarePanel{top}{
+  \begin{picture}(0,0)
+    \put(82,-31){\parbox[c]{.5\textwidth}{\center\large\bf\thecurrentheading}}
+  \end{picture}
+}
+
+\DeclarePanel{bottom}{
+  \begin{picture}(0,0)
+    \put(0,29){\parbox[c]{.98\pdfpagewidth}{\small\thedate\hfill\theslide}}
+  \end{picture}
+}
+
+\slidesmag{4}
 \backgroundstyle{none}
 \slideframe{none}
 \pagestyle{empty}
 
-% WTF?
 \mklength{\slideleftmargin}{-2cm}
 \mklength{\sliderightmargin}{-2cm}
 \mklength{\slidetopmargin}{4.5cm}
 \mklength{\slidebottommargin}{2.37cm}
 
-\definecolor{grey}{gray}{0.5}
-\definecolor{orange}{cmyk}{0,0.6,0,0}
-\definecolor{darkblue}{cmyk}{1,0.7,0,0.33}
-\definecolor{darkgreen}{cmyk}{1,0,1,0.5}
 \renewcommand{\currentpagevalue}{\value{slide}}
 \newcommand{\thecurrentheading}{}
 \newcommand{\heading}[1]{\renewcommand{\thecurrentheading}{#1}}
@@ -66,6 +79,41 @@
   \heading{\thetitle}
   \begin{center}
     \maketitle
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \pdfbookmark[1]{Motivation}{motivation}
+  \heading{Motivation}
+  \begin{center}
+    Maintain software quality over time as the project evolves!
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \pdfbookmark[1]{Software Rot}{software-rot}
+  \heading{Software Rot}
+  \begin{center}
+    \textbf{Symptoms of rotting software design}\footnote{Robert C. Martin: Design Principles and Design Patterns}
+    \begin{itemize}
+      \item \textbf{Rigidity}: software difficult (a lot of work) to change
+      \item \textbf{Fragility}: changes easily break the software
+      \item \textbf{Immobility}: it is easier to rewrite than reuse parts of the software
+      \item \textbf{Viscosity}: design preserving methods are harder to employ than hacks
+    \end{itemize}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \pdfbookmark[1]{Software Design}{software-design}
+  \heading{Software Design}
+  \begin{center}
+    \begin{itemize}
+      \item Keep software application \textbf{flexible}
+      \item Keep software application \textbf{robust}
+      \item Keep software application \textbf{reusable}
+      \item Keep software application \textbf{developable}
+    \end{itemize}
   \end{center}
 \end{slide}
 
@@ -87,6 +135,53 @@
         \item Advocate of Test-Driven Development
       \end{itemize}
     \end{minipage}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \pdfbookmark[1]{The SOLID Principles}{solid-principles}
+  \heading{The SOLID Principles}
+  \begin{center}
+    \begin{itemize}
+      \item \textbf{S}ingle responsibility
+      \item \textbf{O}pen-closed
+      \item \textbf{L}iskov substitution
+      \item \textbf{I}nterface segregation
+      \item \textbf{D}ependency inversion
+    \end{itemize}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \pdfbookmark[1]{Listings Test}{listings-test}
+  \heading{Listings Test}
+  \begin{center}
+    \begin{lstlisting}
+def sqr(x):
+    return x * x
+    \end{lstlisting}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \pdfbookmark[1]{The SOLID Principles}{solid-principles-2}
+  \heading{The SOLID Principles}
+  \begin{center}
+    \begin{itemize}
+      \item \textbf{S}ingle responsibility
+      \item \textbf{O}pen-closed
+      \item \textbf{L}iskov substitution
+      \item \textbf{I}nterface segregation
+      \item \textbf{D}ependency inversion
+    \end{itemize}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \pdfbookmark[1]{ArjanCodes video}{arjancodes-video}
+  \heading{ArjanCodes: Uncle Bob's SOLID Principles Made Easy}
+  \begin{center}
+    \href{https://www.youtube.com/watch?v=pTB30aXS77U}{\resizebox*{.95\textwidth}{!}{\includegraphics{arjancodes}}}
   \end{center}
 \end{slide}
 
