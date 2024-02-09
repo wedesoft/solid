@@ -58,14 +58,6 @@
 \newcommand{\thecurrentheading}{}
 \newcommand{\heading}[1]{\renewcommand{\thecurrentheading}{#1}}
 \newcommand{\subheading}[1]{\concept{#1}}
-\newcommand{\black}[1]{\textcolor{black}{#1}}
-\newcommand{\grey}[1]{\textcolor{grey}{#1}}
-\newcommand{\red}[1]{\textcolor{red}{#1}}
-\newcommand{\green}[1]{\textcolor{green}{#1}}
-\newcommand{\blue}[1]{\textcolor{blue}{#1}}
-\newcommand{\orange}[1]{\textcolor{orange}{#1}}
-\newcommand{\darkblue}[1]{\textcolor{darkblue}{#1}}
-\newcommand{\darkgreen}[1]{\textcolor{darkgreen}{#1}}
 
 \begin{document}
 
@@ -74,6 +66,27 @@
   \heading{\thetitle}
   \begin{center}
     \maketitle
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \pdfbookmark[1]{Robert C. Martin}{robertmartin}
+  \heading{Robert C. Martin aka "Uncle Bob"}
+  \begin{center}
+    \begin{minipage}[c]{.4\textwidth}
+      \resizebox*{.93\textwidth}{!}{\includegraphics{robert-martin}}
+    \end{minipage}
+    \begin{minipage}[c]{.55\textwidth}
+      \begin{itemize}
+        \item Born 5.12.1952
+        \item One of \href{https://agilemanifesto.org/}{Agile Manifesto}'s authors
+        \item Author of \href{https://www.informit.com/store/clean-code-a-handbook-of-agile-software-craftsmanship-9780132350884}{Clean Code}, \href{https://www.informit.com/store/functional-design-principles-patterns-and-practices-9780138176396}{Functional Design}, and more books
+        \item software consultant and trainer
+        \item Author of \href{https://web.archive.org/web/20150906155800/http://www.objectmentor.com/resources/articles/Principles_and_Patterns.pdf}{Design Principles and Design Patterns} which later became SOLID
+        \item Speaker at many conferences
+        \item Advocate of Test-Driven Development
+      \end{itemize}
+    \end{minipage}
   \end{center}
 \end{slide}
 
