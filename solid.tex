@@ -60,8 +60,8 @@
 
 \mklength{\slideleftmargin}{-2cm}
 \mklength{\sliderightmargin}{-2cm}
-\mklength{\slidetopmargin}{2.27cm}
-\mklength{\slidebottommargin}{2.27cm}
+\mklength{\slidetopmargin}{2.5cm}
+\mklength{\slidebottommargin}{1.5cm}
 
 \renewcommand{\currentpagevalue}{\value{slide}}
 \newcommand{\thecurrentheading}{}
@@ -301,9 +301,8 @@ class Square(Shape):
   \pdfbookmark[2]{Contracts}{liskov-substitution-contracts}
   \heading{Liskov-Substitution - Contracts}
   \begin{center}
-    \href{https://www.cs.ubc.ca/~ebani/papers/LiskofHappySad_ICSE-SEET_2018.pdf}{Baniassad: Making the Liskov Substitution Principle Happy and Sad}\\
     ``The Liskov Substitution Principle states, among other constraints, that a subtype is not substitutable for its super type
-    if it strengthens its operations' preconditions, or weakens its operations' postconditions''\bigskip\\
+    if it strengthens its operations' preconditions, or weakens its operations' postconditions''\footnote{\href{https://www.cs.ubc.ca/~ebani/papers/LiskofHappySad_ICSE-SEET_2018.pdf}{Baniassad: Making the Liskov Substitution Principle Happy and Sad}}\bigskip\\
     \resizebox*{.8\textwidth}{!}{\includegraphics{liskov}}
   \end{center}
 \end{slide}
@@ -316,7 +315,9 @@ class Square(Shape):
     \begin{minted}{python}
 class AccountHolder:
   def __init__(self, name, age, balance):
-    self.name, self.age, self.balance = name, age, balance
+    self.name = name
+    self.age = age
+    self.balance = balance
   def is_adult(self):
     return self.adult >= 18
   def deposit(self, amount):
@@ -360,8 +361,6 @@ class AccountHolder(Person):
   \heading{Dependency Inversion - Before}
   \begin{center}
     \begin{minted}{python}
-import sqlite3
-
 def get_names(connection):
     cursor = connection.cursor()
     cursor.execute('SELECT name FROM member_table')
@@ -382,15 +381,15 @@ print(names_list)
   \heading{Dependency Inversion - After}
   \begin{center}
     \begin{minted}{python}
-import abc
-import sqlite3
-
-class Database(abc.ABC):
+class SQLDatabase(abc.ABC):
   @abc.abstractmethod
   def sql(self, query):
     pass
+  def get_names(self):
+      rows = self.sql('SELECT name FROM member_table')
+      return [row[0] for row in rows]
 
-class SQLiteDatabase(Database):
+class SQLiteDatabase(SQLDatabase):
   def __init__(self, db_file_name):
     self.connection = sqlite3.connect(db_file_name)
   def __del__(self):
@@ -407,12 +406,8 @@ class SQLiteDatabase(Database):
   \heading{Dependency Inversion - After}
   \begin{center}
     \begin{minted}{python}
-def get_names(database):
-    rows = database.sql('SELECT name FROM member_table')
-    return [row[0] for row in rows]
-
 database = SQLiteDatabase('example.db')
-names_list = get_names(database)
+names_list = database.get_names()
 print(names_list)
     \end{minted}
   \end{center}
