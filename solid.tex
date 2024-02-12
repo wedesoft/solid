@@ -6,8 +6,9 @@
 \usepackage{fixseminar}
 \usepackage{tpslifonts}
 \usepackage[pdftex,final]{graphicx} % For including graphics.
+\usepackage{animate}
 \usepackage[utf8]{inputenc}
-\usepackage{listings}
+\usepackage{minted}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{eurosym}
@@ -36,11 +37,6 @@
    pdfpagemode       = {FullScreen}
 }
 
-\lstset {
-  language=Python,
-  basicstyle=\tiny
-}
-
 % \textregistered for (R)
 % \copyright for (C)
 % \texttrademark for (TM) 
@@ -53,7 +49,7 @@
 
 \DeclarePanel{bottom}{
   \begin{picture}(0,0)
-    \put(0,29){\parbox[c]{.98\pdfpagewidth}{\small\thedate\hfill\theslide}}
+    \put(0,29){\parbox[c]{.98\pdfpagewidth}{\tiny\thedate\hfill\theslide}}
   \end{picture}
 }
 
@@ -153,13 +149,130 @@
 \end{slide}
 
 \begin{slide}
-  \pdfbookmark[1]{Listings Test}{listings-test}
-  \heading{Listings Test}
+  \pdfbookmark[1]{Single Responsibility}{single-responsibility}
+  \pdfbookmark[2]{Before}{single-responsibility-before}
+  \heading{Single Responsibility - Before}
   \begin{center}
-    \begin{lstlisting}
-def sqr(x):
-    return x * x
-    \end{lstlisting}
+    \begin{minted}{python}
+def adults_to_html(people):
+    result = "<ul>\n"
+    for person in people:
+        if person.age >= 18:
+            result += "<li>" + person.name + "</li>\n"
+    result += "</ul>"
+    return result
+# ...
+page = adults_to_html(people)
+    \end{minted}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \pdfbookmark[2]{After}{single-responsibility-after}
+  \heading{Single Responsibility - After}
+  \begin{center}
+    \begin{minted}{python}
+def select_adults(people):
+    return [person for person in people if person.age >= 18]
+
+def people_to_html(people):
+    result = "<ul>\n"
+    for person in people:
+        result += "<li>" + person.name + "</li>\n"
+    result += "</ul>"
+    return result
+# ...
+page = people_to_html(select_adults(people))
+    \end{minted}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \pdfbookmark[1]{Open-Closed}{open-closed}
+  \pdfbookmark[2]{Before}{open-closed-before}
+  \heading{Open-Closed - Before}
+  \begin{center}
+    \begin{minted}{python}
+def total_area(shapes):
+  result = 0
+  for shape in shapes:
+    match type(shape):
+      case Rectangle:
+        result += shape.width * shape.height
+      case Sphere:
+        result += math.pi * shape.radius ** 2
+      case _:
+        raise f"Unsupported shape {shape}"
+  return result
+    \end{minted}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \pdfbookmark[2]{After}{open-closed-after}
+  \heading{Open-Closed - After}
+  \begin{center}
+    \begin{minted}{python}
+class Rectangle:
+  def area(self):
+    return self.width * self.height
+
+class Circle:
+  def area(self):
+    return math.pi * self.radius ** 2
+
+def total_area(shapes):
+  result = 0
+  for shape in shapes:
+    result += shape.area()
+  return result
+    \end{minted}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \pdfbookmark[1]{Liskov-Substitution}{liskov-substitution}
+  \pdfbookmark[2]{Before}{liskov-substitution-before}
+  \heading{Liskov-Substitution - Before}
+  \begin{center}
+    \begin{minted}{python}
+class Rectangle:
+  def __init__(self, width, height):
+    self.width, self.height = width, height
+  def set_width(self, width):
+    self.width = width
+  def set_height(self, height):
+    self.height = height
+
+class Square(Rectangle):
+  def __init__(self, side):
+    super().__init__(side, side)
+    \end{minted}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \pdfbookmark[2]{After}{liskov-substitution-after}
+  \heading{Liskov-Substitution - After}
+  \begin{center}
+    \begin{minted}{python}
+class Shape:
+  pass
+
+class Rectangle(Shape):
+  def __init__(self, width, height):
+    self.width, self.height = width, height
+  def set_width(self, width):
+    self.width = width
+  def set_height(self, height):
+    self.height = height
+
+class Square(Shape):
+  def __init__(self, side):
+    self.side = side
+  def set_side(self, side):
+    self.side = side
+    \end{minted}
   \end{center}
 \end{slide}
 
@@ -167,13 +280,7 @@ def sqr(x):
   \pdfbookmark[1]{The SOLID Principles}{solid-principles-2}
   \heading{The SOLID Principles}
   \begin{center}
-    \begin{itemize}
-      \item \textbf{S}ingle responsibility
-      \item \textbf{O}pen-closed
-      \item \textbf{L}iskov substitution
-      \item \textbf{I}nterface segregation
-      \item \textbf{D}ependency inversion
-    \end{itemize}
+    \animategraphics[loop,autoplay,width=.6\textwidth]{12}{solidframe-}{0}{59}
   \end{center}
 \end{slide}
 
