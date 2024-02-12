@@ -121,19 +121,21 @@
   \pdfbookmark[1]{Robert C. Martin}{robertmartin}
   \heading{Robert C. Martin aka "Uncle Bob"}
   \begin{center}
-    \begin{minipage}[c]{.4\textwidth}
+    \begin{minipage}[c]{.3\textwidth}
       \begin{center}
         \resizebox*{.93\textwidth}{!}{\includegraphics{robert-martin}}\\
-        Robert C. Martin
+        Robert C. Martin\bigskip\\
+        \resizebox*{.93\textwidth}{!}{\includegraphics{michael-feathers}}\\
+        Michael Feathers
       \end{center}
     \end{minipage}
-    \begin{minipage}[c]{.55\textwidth}
+    \begin{minipage}[c]{.65\textwidth}
       \begin{itemize}
         \item Born 5.12.1952
         \item One of \href{https://agilemanifesto.org/}{Agile Manifesto}'s authors
         \item Author of \href{https://www.informit.com/store/clean-code-a-handbook-of-agile-software-craftsmanship-9780132350884}{Clean Code}, \href{https://www.informit.com/store/functional-design-principles-patterns-and-practices-9780138176396}{Functional Design}, and more books
         \item software consultant and trainer
-        \item Author of \href{https://web.archive.org/web/20150906155800/http://www.objectmentor.com/resources/articles/Principles_and_Patterns.pdf}{Design Principles and Design Patterns} which later became SOLID
+        \item Author of \href{https://web.archive.org/web/20150906155800/http://www.objectmentor.com/resources/articles/Principles_and_Patterns.pdf}{Design Principles and Design Patterns} which later was summarized as SOLID by \emph{Michael Feathers}
         \item Speaker at many conferences
         \item Advocate of Test-Driven Development
       \end{itemize}
@@ -260,6 +262,11 @@ class Rectangle:
 class Square(Rectangle):
   def __init__(self, side):
     super().__init__(side, side)
+  def set_width(self, width):
+    super().set_width(width)
+    super().set_height(width)
+  def set_height(self, height):
+    self.set_width(height)
       \end{minted}
     \end{minipage}
     \begin{minipage}[c]{.35\textwidth}
@@ -431,7 +438,8 @@ print(names_list)
   \pdfbookmark[1]{Arjan Egges Video}{arjancodes-video}
   \heading{Arjan Egges: Uncle Bob's SOLID Principles Made Easy}
   \begin{center}
-    \href{https://www.youtube.com/watch?v=pTB30aXS77U}{\resizebox*{.95\textwidth}{!}{\includegraphics{arjancodes}}}
+    \href{https://www.youtube.com/watch?v=pTB30aXS77U}{\resizebox*{.95\textwidth}{!}{\includegraphics{arjancodes}}}\\
+    {\small 19 minutes video}
   \end{center}
 \end{slide}
 
@@ -439,7 +447,8 @@ print(names_list)
   \pdfbookmark[1]{Jim Weirich Video}{connascence}
   \heading{Jim Weirich: The Building Blocks of Modularity}
   \begin{center}
-    \href{https://www.youtube.com/watch?v=q85rdBMe9GY}{\resizebox*{.95\textwidth}{!}{\includegraphics{weirich}}}
+    \href{https://www.youtube.com/watch?v=q85rdBMe9GY}{\resizebox*{.95\textwidth}{!}{\includegraphics{weirich}}}\\
+    {\small 33 minutes video}
   \end{center}
 \end{slide}
 
@@ -448,10 +457,10 @@ print(names_list)
   \heading{Connascence}
   \textbf{Connascence} \textipa{[k@'neIs@ns]} is a software quality metric invented by Meilir Page-Jones to allow reasoning about the
   complexity caused by dependency relationships in object-oriented design much like coupling did for structured design. In software
-  engineering, two components are connascent if a change in one would require the other to be modified in order to maintain the
-  overall correctness of the system. In addition to allowing categorization of dependency relationships, connascence also provides
-  a system for comparing different types of dependency. Such comparisons between potential designs can often hint at ways to
-  improve the quality of the software.\footnote{\url{https://en.wikipedia.org/wiki/Connascence}}
+  engineering, \emph{two components are connascent if a change in one would require the other to be modified in order to maintain
+  the overall correctness of the system}. In addition to allowing categorization of dependency relationships, connascence also
+  provides a system for comparing different types of dependency. Such comparisons between potential designs can often hint at
+  ways to improve the quality of the software.\footnote{\url{https://en.wikipedia.org/wiki/Connascence}}
 \end{slide}
 
 \end{document}
