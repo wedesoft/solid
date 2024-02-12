@@ -1,0 +1,16 @@
+image: $CI_REGISTRY_IMAGE/aergus/latex
+
+stages:
+  - build
+
+report:
+  stage: build
+  tags:
+    - docker
+  script:
+    - make
+  artifacts:
+    expire_in: 30 days
+    when: always
+    paths:
+      - "solid.pdf"
