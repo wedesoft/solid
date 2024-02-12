@@ -242,7 +242,8 @@ def total_area(shapes):
       \begin{minted}{python}
 class Rectangle:
   def __init__(self, width, height):
-    self.width, self.height = width, height
+    self.width = width
+    self.self.height = height
   def set_width(self, width):
     self.width = width
   def set_height(self, height):
@@ -254,8 +255,10 @@ class Square(Rectangle):
       \end{minted}
     \end{minipage}
     \begin{minipage}[b]{.35\textwidth}
+      \begin{center}
         \resizebox*{.93\textwidth}{!}{\includegraphics{liskov-depressed}}\\
-        Barbara Liskov (depressed)
+        Barbara Liskov (sad)
+      \end{center}
     \end{minipage}
   \end{center}
 \end{slide}
@@ -271,7 +274,8 @@ class Shape:
 
 class Rectangle(Shape):
   def __init__(self, width, height):
-    self.width, self.height = width, height
+    self.width = width
+    self.self.height = height
   def set_width(self, width):
     self.width = width
   def set_height(self, height):
