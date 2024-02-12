@@ -25,7 +25,7 @@
      inkscape:document-units="mm"
      showgrid="true"
      inkscape:zoom="1.4627806"
-     inkscape:cx="331.21851"
+     inkscape:cx="331.56032"
      inkscape:cy="191.75808"
      inkscape:window-width="1920"
      inkscape:window-height="1017"
@@ -137,46 +137,46 @@
     <text
        xml:space="preserve"
        style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
-       x="37.984165"
+       x="35.338329"
        y="104.18513"
        id="text1"><tspan
          sodipodi:role="line"
          id="tspan1"
          style="stroke-width:0.264583"
-         x="37.984165"
+         x="35.338329"
          y="104.18513">precondition</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
-       x="49.017662"
+       x="46.900993"
        y="125.89038"
        id="text2"><tspan
          sodipodi:role="line"
          id="tspan2"
          style="stroke-width:0.264583"
-         x="49.017662"
+         x="46.900993"
          y="125.89038">precondition</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
-       x="110.55039"
+       x="109.49206"
        y="125.89038"
        id="text3"><tspan
          sodipodi:role="line"
          id="tspan3"
          style="stroke-width:0.264583"
-         x="110.55039"
+         x="109.49206"
          y="125.89038">post condition</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
-       x="117.96634"
+       x="116.908"
        y="104.18513"
        id="text4"><tspan
          sodipodi:role="line"
          id="tspan4"
          style="stroke-width:0.264583"
-         x="117.96634"
+         x="116.908"
          y="104.18513">post condition</tspan></text>
     <text
        xml:space="preserve"

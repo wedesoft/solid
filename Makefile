@@ -1,5 +1,7 @@
 .SUFFIXES: .pdf .tex .svg .gif .jpg
 
+SHELL=/bin/bash -o pipefail
+
 solid.pdf: solid.tex solidframe-0.jpg liskov.pdf
 	pdflatex -shell-escape $<
 
