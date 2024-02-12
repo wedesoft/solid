@@ -298,7 +298,7 @@ class Square(Shape):
 \end{slide}
 
 \begin{slide}
-  \pdfbookmark[2]{After}{liskov-substitution-contracts}
+  \pdfbookmark[2]{Contracts}{liskov-substitution-contracts}
   \heading{Liskov-Substitution - Contracts}
   \begin{center}
     \href{https://www.cs.ubc.ca/~ebani/papers/LiskofHappySad_ICSE-SEET_2018.pdf}{Baniassad: Making the Liskov Substitution Principle Happy and Sad}\\
@@ -328,7 +328,7 @@ class AccountHolder:
 \end{slide}
 
 \begin{slide}
-  \pdfbookmark[2]{Before}{interface-segregation-after}
+  \pdfbookmark[2]{After}{interface-segregation-after}
   \heading{Interface Segregation - After}
   \begin{center}
     \begin{minted}{python}
@@ -355,8 +355,72 @@ class AccountHolder(Person):
 \end{slide}
 
 \begin{slide}
-  \pdfbookmark[1]{The SOLID Principles}{solid-principles-2}
-  \heading{The SOLID Principles}
+  \pdfbookmark[1]{Dependency Inversion}{dependency-inversion}
+  \pdfbookmark[2]{Before}{dependency-inversion-before}
+  \heading{Dependency Inversion - Before}
+  \begin{center}
+    \begin{minted}{python}
+import sqlite3
+
+def get_names(connection):
+    cursor = connection.cursor()
+    cursor.execute('SELECT name FROM member_table')
+    rows = cursor.fetchall()
+    names = [row[0] for row in rows]
+    return names
+
+connection = sqlite3.connect('example.db')
+names_list = get_names(connection)
+connection.close()
+print(names_list)
+    \end{minted}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \pdfbookmark[2]{After}{interface-segregation-after}
+  \heading{Dependency Inversion - After}
+  \begin{center}
+    \begin{minted}{python}
+import abc
+import sqlite3
+
+class Database(abc.ABC):
+  @abc.abstractmethod
+  def sql(self, query):
+    pass
+
+class SQLiteDatabase(Database):
+  def __init__(self, db_file_name):
+    self.connection = sqlite3.connect(db_file_name)
+  def __del__(self):
+    self.connection.close()
+  def sql(self, query):
+    cursor = connection.cursor()
+    cursor.execute(query)
+    return cursor.fetchall()
+    \end{minted}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \heading{Dependency Inversion - After}
+  \begin{center}
+    \begin{minted}{python}
+def get_names(database):
+    rows = database.sql('SELECT name FROM member_table')
+    return [row[0] for row in rows]
+
+database = SQLiteDatabase('example.db')
+names_list = get_names(database)
+print(names_list)
+    \end{minted}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \pdfbookmark[1]{SOLID Overview}{solid-overview}
+  \heading{SOLID Overview}
   \begin{center}
     \animategraphics[loop,autoplay,width=.6\textwidth]{12}{solidframe-}{0}{59}
   \end{center}
