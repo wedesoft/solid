@@ -1,0 +1,255 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="119.35142mm"
+   height="110.37476mm"
+   viewBox="0 0 119.35142 110.37476"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="principles.svg"
+   inkscape:version="1.3.2 (091e20e, 2023-11-25, custom)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="true"
+     inkscape:zoom="1.4627806"
+     inkscape:cx="166.8056"
+     inkscape:cy="138.43498"
+     inkscape:window-width="1920"
+     inkscape:window-height="1017"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1">
+    <inkscape:grid
+       id="grid1"
+       units="px"
+       originx="-44.676612"
+       originy="-117.07424"
+       spacingx="0.26458333"
+       spacingy="0.26458334"
+       empcolor="#0099e5"
+       empopacity="0.30196078"
+       color="#0099e5"
+       opacity="0.14901961"
+       empspacing="5"
+       dotted="false"
+       gridanglex="30"
+       gridanglez="30"
+       visible="true" />
+  </sodipodi:namedview>
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="ColoredTriangle"
+       refX="-1"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Colored triangle"
+       markerWidth="3"
+       markerHeight="3"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-fill;fill-rule:evenodd;stroke:context-stroke;stroke-width:2"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ArrowWide"
+       refX="1"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Wide arrow"
+       markerWidth="3"
+       markerHeight="3"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         sodipodi:nodetypes="ccc"
+         id="path1" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ArrowWide-8"
+       refX="1"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Wide arrow"
+       markerWidth="3"
+       markerHeight="3"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:butt"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         sodipodi:nodetypes="ccc"
+         id="path1-7" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ColoredTriangle-8"
+       refX="-1"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Colored triangle"
+       markerWidth="3"
+       markerHeight="3"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-fill;fill-rule:evenodd;stroke:context-stroke;stroke-width:2"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path5-9" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-44.676612,-117.07424)">
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="74.404251"
+       y="135.13742"
+       id="text1-0"><tspan
+         sodipodi:role="line"
+         id="tspan1-8"
+         style="stroke-width:0.264583"
+         x="74.404251"
+         y="135.13742">Liskov substitution principle</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="90.355965"
+       y="167.43358"
+       id="text2-3"><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="90.355965"
+         y="167.43358"
+         id="tspan3-1">single</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="90.355965"
+         y="172.72523"
+         id="tspan12">responsibility</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.264583"
+         x="90.355965"
+         y="178.01691"
+         id="tspan13">principle</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="-206.31076"
+       y="67.398239"
+       id="text4-8"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         id="tspan4-0"
+         style="stroke-width:0.264583"
+         x="-206.31076"
+         y="67.398239">interface segregation principle</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="-207.03011"
+       y="143.93198"
+       id="text5-3"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         id="tspan5-3"
+         style="stroke-width:0.264583"
+         x="-207.03011"
+         y="143.93198">dependency inversion principle</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
+       x="81.74527"
+       y="213.62257"
+       id="text6-5"><tspan
+         sodipodi:role="line"
+         id="tspan6-2"
+         style="stroke-width:0.264583"
+         x="81.74527"
+         y="213.62257">open-closed principle</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.465;stroke-linejoin:round"
+       id="rect7-9"
+       width="84.288666"
+       height="8.3203411"
+       x="62.325882"
+       y="129.34937" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.465;stroke-linejoin:round"
+       id="rect8-3"
+       width="7.7777066"
+       height="70.903778"
+       x="62.325878"
+       y="137.65427" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.465;stroke-linejoin:round"
+       id="rect9-4"
+       width="8.320343"
+       height="70.54203"
+       x="138.2942"
+       y="137.83514" />
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.465;stroke-linejoin:round"
+       id="rect10-7"
+       width="84.469551"
+       height="7.415956"
+       x="62.145"
+       y="208.55803" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ArrowWide)"
+       d="M 44.676612,171.83313 H 62.402558"
+       id="path11"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ArrowWide-8)"
+       d="m 146.84471,171.83351 h 17.18332"
+       id="path11-3"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;marker-end:url(#ColoredTriangle)"
+       d="m 103.09987,227.44901 1e-5,-7.59683"
+       id="path12"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.265;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#ColoredTriangle-8)"
+       d="m 103.38496,129.63836 -0.18087,-8.68209"
+       id="path12-6"
+       sodipodi:nodetypes="cc" />
+  </g>
+</svg>
