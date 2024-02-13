@@ -243,8 +243,7 @@ def total_area(shapes):
   \pdfbookmark[2]{Before}{liskov-substitution-before}
   \heading{Liskov-Substitution - Before}
   \begin{center}
-    \begin{minipage}[c]{.6\textwidth}
-      \begin{minted}{python}
+    \begin{minted}{python}
 class Rectangle:
   def __init__(self, width, height):
     self.width = width
@@ -262,14 +261,7 @@ class Square(Rectangle):
     super().set_height(width)
   def set_height(self, height):
     self.set_width(height)
-      \end{minted}
-    \end{minipage}
-    \begin{minipage}[c]{.35\textwidth}
-      \begin{center}
-        \resizebox*{.93\textwidth}{!}{\includegraphics{liskov-depressed}}\\
-        Barbara Liskov (sad)
-      \end{center}
-    \end{minipage}
+    \end{minted}
   \end{center}
 \end{slide}
 
@@ -301,7 +293,7 @@ class Square(Shape):
     \begin{minipage}[c]{.35\textwidth}
       \begin{center}
         \resizebox*{.93\textwidth}{!}{\includegraphics{barbara-liskov}}\\
-        Barbara Liskov (happy)
+        Barbara Liskov
       \end{center}
     \end{minipage}
   \end{center}
