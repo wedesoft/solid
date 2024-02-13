@@ -384,7 +384,7 @@ print(names_list)
     \begin{minted}{python}
 class Database(abc.ABC):
   @abc.abstractmethod
-  def get_names(self):
+  def sql(self, query):
     pass
 
 class SQLiteDatabase(Database):
@@ -392,11 +392,14 @@ class SQLiteDatabase(Database):
     self.connection = sqlite3.connect(db_file_name)
   def __del__(self):
     self.connection.close()
-  def get_names(self):
+  def sql(self, query):
     cursor = self.connection.cursor()
-    cursor.execute('SELECT name FROM member_table')
-    rows = cursor.fetchall()
-    return [row[0] for row in rows]
+    cursor.execute(query)
+    return cursor.fetchall()
+
+def get_names(database):
+  rows = database.sql('SELECT name FROM member_table')
+  return [row[0] for row in rows]
     \end{minted}
   \end{center}
 \end{slide}
@@ -406,7 +409,7 @@ class SQLiteDatabase(Database):
   \begin{center}
     \begin{minted}{python}
 database = SQLiteDatabase('example.db')
-names_list = database.get_names()
+names_list = get_names(database)
 print(names_list)
     \end{minted}
   \end{center}
