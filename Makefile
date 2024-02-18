@@ -1,6 +1,4 @@
-.SUFFIXES: .pdf .tex .svg .gif .jpg
-
-SHELL=/bin/bash -o pipefail
+.SUFFIXES: .pdf .tex .svg .png .jpg
 
 IMAGES = $(wildcard *.png) $(wildcard *.jpg)
 
