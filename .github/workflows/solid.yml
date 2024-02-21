@@ -13,10 +13,13 @@ jobs:
       with:
         packages: librsvg2-bin
         version: 1.0
+    - name: make images
+      run: make images
     - name: pdflatex
       uses: xu-cheng/latex-action@v3
       with:
         root_file: solid.tex
+        latexmk_shell_escape: true
     - name: upload
       uses: actions/upload-artifact@v3
       with:
