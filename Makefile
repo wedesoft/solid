@@ -1,9 +1,11 @@
 .SUFFIXES: .pdf .tex .svg .png .jpg
 
-solid.pdf: solid.tex images
+IMAGES = $(wildcard *.png) $(wildcard *.jpg) liskov.pdf aspects.pdf principles.pdf
+
+solid.pdf: solid.tex $(IMAGES)
 	pdflatex -shell-escape $<
 
-images: $(wildcard *.png) $(wildcard *.jpg) liskov.pdf aspects.pdf principles.pdf
+images: $(IMAGES)
 
 .svg.pdf:
 	rsvg-convert -f pdf -o $@ $<
