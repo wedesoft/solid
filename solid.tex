@@ -17,14 +17,14 @@
 
 \title{The SOLID Principles}
 \author{Jan Wedekind}
-\date{Thursday, Feb 22nd 2024}
+\date{Monday, Jan 20st 2025}
 
 \DeclareGraphicsExtensions{.jpg,.pdf,.png}
 \pdfcompresslevel=9
 
 \hypersetup{
    pdftitle          = {\thetitle},
-   pdfsubject        = {After Catchup Presentation 22nd Feb 2024},
+   pdfsubject        = {Short presentation about the SOLID software design principles},
    pdfauthor         = {Jan Wedekind},
    pdfkeywords       = {solid, software, design},
    pdfcreator        = {okular},
@@ -190,7 +190,7 @@
   \pdfbookmark[2]{After}{single-responsibility-after}
   \heading{Single Responsibility - After}
   \begin{center}
-    \begin{minted}{python}
+    \begin{minted}{clojure}
 (defn select-adults [people]
   (filter
     (fn [person] (>= (:age person) 18))
@@ -214,7 +214,7 @@
   \pdfbookmark[2]{Before}{open-closed-before}
   \heading{Open-Closed - Before}
   \begin{center}
-    \begin{minted}{python}
+    \begin{minted}{clojure}
 (defn total-area [shapes]
   (reduce +
     (map
@@ -231,7 +231,7 @@
   \pdfbookmark[2]{After}{open-closed-after}
   \heading{Open-Closed - After}
   \begin{center}
-    \begin{minted}{python}
+    \begin{minted}{clojure}
 (defmulti area :type)
 
 (defmethod area :circle [shape]
@@ -323,18 +323,16 @@ class Square(Shape):
   \pdfbookmark[2]{Before}{interface-segregation-before}
   \heading{Interface Segregation - Before}
   \begin{center}
-    \begin{minted}{python}
-class AccountHolder:
-  def __init__(self, name, age, balance):
-    self.name = name
-    self.age = age
-    self.balance = balance
-  def is_adult(self):
-    return self.adult >= 18
-  def deposit(self, amount):
-    self.balance += amount
-  def withdraw(self, amount):
-    self.balance -= amount
+    \begin{minted}{clojure}
+(defrecord AccountHolder [name age balance])
+
+(defn is-adult [account-holder] (>= (:age account-holder) 18))
+
+(defn deposit [account-holder amount]
+  (update account-holder :balance + amount))
+
+(defn withdraw [account-holder amount]
+  (update account-holder :balance - amount))
     \end{minted}
   \end{center}
 \end{slide}
@@ -343,25 +341,21 @@ class AccountHolder:
   \pdfbookmark[2]{After}{interface-segregation-after}
   \heading{Interface Segregation - After}
   \begin{center}
-    \begin{minted}{python}
-class Person:
-  def __init__(self, name, age):
-    self.name, self.age = name, age
-  def is_adult(self):
-    return self.adult >= 18
+    \begin{minted}{clojure}
+(defrecord Person [name age])
 
-class Account:
-  def __init__(self, balance):
-    self.balance = balance
-  def deposit(self, amount):
-    self.balance += amount
-  def withdraw(self, amount):
-    self.balance -= amount
+(defn is-adult [person]
+  (>= (:age person) 18))
 
-class AccountHolder(Person):
-  def __init__(self, name, age, account):
-    super().__init__(name, age)
-    self.account = account
+(defrecord Account [balance])
+
+(defn deposit [account amount]
+  (update account :balance + amount))
+
+(defn withdraw [account amount]
+  (update account :balance - amount))
+
+(defrecord AccountHolder [person account])
     \end{minted}
   \end{center}
 \end{slide}
@@ -371,18 +365,12 @@ class AccountHolder(Person):
   \pdfbookmark[2]{Before}{dependency-inversion-before}
   \heading{Dependency Inversion - Before}
   \begin{center}
-    \begin{minted}{python}
-def get_names(connection):
-    cursor = connection.cursor()
-    cursor.execute('SELECT name FROM member_table')
-    rows = cursor.fetchall()
-    names = [row[0] for row in rows]
-    return names
-
-connection = sqlite3.connect('example.db')
-names_list = get_names(connection)
-connection.close()
-print(names_list)
+    \begin{minted}{clojure}
+(defn print-names [people stream]
+  (doseq [person people]
+         (.println stream (:name person))))
+; ...
+(print-names [{:name "Alice"} {:name "Bob"}] *out*)
     \end{minted}
   \end{center}
 \end{slide}
@@ -391,36 +379,16 @@ print(names_list)
   \pdfbookmark[2]{After}{interface-segregation-after}
   \heading{Dependency Inversion - After}
   \begin{center}
-    \begin{minted}{python}
-class Database(abc.ABC):
-  @abc.abstractmethod
-  def sql(self, query):
-    pass
-
-class SQLiteDatabase(Database):
-  def __init__(self, db_file_name):
-    self.connection = sqlite3.connect(db_file_name)
-  def __del__(self):
-    self.connection.close()
-  def sql(self, query):
-    cursor = self.connection.cursor()
-    cursor.execute(query)
-    return cursor.fetchall()
-
-def get_names(database):
-  rows = database.sql('SELECT name FROM member_table')
-  return [row[0] for row in rows]
-    \end{minted}
-  \end{center}
-\end{slide}
-
-\begin{slide}
-  \heading{Dependency Inversion - After}
-  \begin{center}
-    \begin{minted}{python}
-database = SQLiteDatabase('example.db')
-names_list = get_names(database)
-print(names_list)
+    \begin{minted}{clojure}
+(defn print-names [people stream]
+  (doseq [person people]
+         (.write stream (:name person))
+         (.write stream "\n")))
+; ...
+(print-names [{:name "Alice"} {:name "Bob"}] *out*)
+; ...
+(with-open [f (java.io.FileWriter. "names.txt")]
+  (print-names [{:name "Alice"} {:name "Bob"}] f))
     \end{minted}
   \end{center}
 \end{slide}
