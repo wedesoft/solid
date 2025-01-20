@@ -215,17 +215,14 @@
   \heading{Open-Closed - Before}
   \begin{center}
     \begin{minted}{python}
-def total_area(shapes):
-  result = 0
-  for shape in shapes:
-    match type(shape):
-      case Rectangle:
-        result += shape.width * shape.height
-      case Sphere:
-        result += math.pi * shape.radius ** 2
-      case _:
-        raise f"Unsupported shape {shape}"
-  return result
+(defn total-area [shapes]
+  (reduce +
+    (map
+      (fn [shape]
+        (case (:type shape)
+          :circle (* Math/PI (:radius shape) (:radius shape))
+          :rectangle (* (:width shape) (:height shape))))
+      shapes)))
     \end{minted}
   \end{center}
 \end{slide}
@@ -235,19 +232,17 @@ def total_area(shapes):
   \heading{Open-Closed - After}
   \begin{center}
     \begin{minted}{python}
-class Rectangle:
-  def area(self):
-    return self.width * self.height
+(defmulti area :type)
 
-class Circle:
-  def area(self):
-    return math.pi * self.radius ** 2
+(defmethod area :circle [shape]
+  (* Math/PI (:radius shape) (:radius shape)))
 
-def total_area(shapes):
-  result = 0
-  for shape in shapes:
-    result += shape.area()
-  return result
+(defmethod area :rectangle [shape]
+  (* (:width shape) (:height shape)))
+
+(defn total-area [shapes]
+  (reduce +
+    (map area shapes)))
     \end{minted}
   \end{center}
 \end{slide}
