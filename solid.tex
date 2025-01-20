@@ -32,8 +32,7 @@
    bookmarksopen     = false,
    bookmarksnumbered = true,
    colorlinks        = true,
-   pdfstartpage      = {1},
-   pdfpagemode       = {FullScreen}
+   pdfstartpage      = {1}
 }
 
 \DeclarePanel{top}{
@@ -173,16 +172,16 @@
   \pdfbookmark[2]{Before}{single-responsibility-before}
   \heading{Single Responsibility - Before}
   \begin{center}
-    \begin{minted}{python}
-def adults_to_html(people):
-    result = "<ul>\n"
-    for person in people:
-        if person.age >= 18:
-            result += "  <li>" + person.name + "</li>\n"
-    result += "</ul>"
-    return result
-# ...
-page = adults_to_html(people)
+    \begin{minted}{clojure}
+(defn adults-to-html [people]
+  (str
+    "<ul>\n"
+    (apply str
+           (for [person people :when (>= (:age person) 18)]
+                (str "<li>" (:name person) "</li>\n")))
+    "</ul>"))
+; ...
+(def page (adults-to-html people))
     \end{minted}
   \end{center}
 \end{slide}
@@ -192,17 +191,20 @@ page = adults_to_html(people)
   \heading{Single Responsibility - After}
   \begin{center}
     \begin{minted}{python}
-def select_adults(people):
-    return [person for person in people if person.age >= 18]
+(defn select-adults [people]
+  (filter
+    (fn [person] (>= (:age person) 18))
+    people))
 
-def people_to_html(people):
-    result = "<ul>\n"
-    for person in people:
-        result += "  <li>" + person.name + "</li>\n"
-    result += "</ul>"
-    return result
-# ...
-page = people_to_html(select_adults(people))
+(defn people-to-html [people]
+  (str
+    "<ul>\n"
+    (apply str
+           (for [person people]
+             (str "<li>" (:name person) "</li>\n")))
+    "</ul>"))
+; ...
+(def page (people-to-html (select-adults people)))
     \end{minted}
   \end{center}
 \end{slide}
