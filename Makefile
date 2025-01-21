@@ -9,3 +9,6 @@ images: $(IMAGES)
 
 .svg.pdf:
 	rsvg-convert -f pdf -o $@ $<
+
+clean:
+	rm -Rf _minted-solid *.pdf *.aux *.log *.out
