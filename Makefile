@@ -1,6 +1,6 @@
 .SUFFIXES: .pdf .tex .svg .png .jpg
 
-IMAGES = $(wildcard *.png) $(wildcard *.jpg) liskov.pdf aspects.pdf principles.pdf
+IMAGES = $(wildcard *.png) $(wildcard *.jpg) liskov.pdf liskov-example.pdf aspects.pdf principles.pdf
 
 solid.pdf: solid.tex $(IMAGES)
 	pdflatex -shell-escape $<

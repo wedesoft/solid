@@ -17,7 +17,7 @@
 
 \title{The SOLID Principles}
 \author{Jan Wedekind}
-\date{Monday, Jan 20st 2025}
+\date{Monday, Jan 21st 2025}
 
 \DeclareGraphicsExtensions{.jpg,.pdf,.png}
 \pdfcompresslevel=9
@@ -219,8 +219,8 @@
     (map
       (fn [shape]
         (case (:type shape)
-          :circle (* Math/PI (:radius shape) (:radius shape))
-          :rectangle (* (:width shape) (:height shape))))
+          ::circle (* Math/PI (:radius shape) (:radius shape))
+          ::rectangle (* (:width shape) (:height shape))))
       shapes)))
     \end{minted}
   \end{center}
@@ -233,10 +233,10 @@
     \begin{minted}{clojure}
 (defmulti area :type)
 
-(defmethod area :circle [shape]
+(defmethod area ::circle [shape]
   (* Math/PI (:radius shape) (:radius shape)))
 
-(defmethod area :rectangle [shape]
+(defmethod area ::rectangle [shape]
   (* (:width shape) (:height shape)))
 
 (defn total-area [shapes]
@@ -252,56 +252,22 @@
   \heading{Liskov-Substitution - Before}
   \begin{center}
     \begin{minted}{clojure}
-(defrecord Rectangle [width height])
-(defrecord Square [width])
+(defmulti set-width (fn [x width] (:type x)))
+(defmethod set-width ::rectangle [x width]
+  (assoc x :width width))
+(defmethod set-width ::square [x width]
+  (assoc x :width width :height width))
 
-(defmulti set-width (fn [x width] (class x)))
-(defmethod set-width Rectangle [x width]
-  (Rectangle. width (:height x)))
-(defmethod set-width Square [x width]
-  (Square. width))
+(defmulti set-height (fn [x height] (:type x)))
+(defmethod set-height ::rectangle [x height]
+  (assoc x :height height))
+(defmethod set-height ::square [x height]
+  (assoc x :width height :height height))
 
-(defmulti set-height (fn [x height] (class x)))
-(defmethod set-height Rectangle [x height]
-  (Rectangle. (:width x) height))
-(defmethod set-height Square [x height]
-  (Square. height))
-
-(defn area [x] (* (:width x) (:height x)))
+(defmulti area :type)
+(defmethod area ::rectangle [x] (* (:width x) (:height x)))
+(derive ::square ::rectangle)
     \end{minted}
-  \end{center}
-\end{slide}
-
-\begin{slide}
-  \pdfbookmark[2]{After}{liskov-substitution-after}
-  \heading{Liskov-Substitution - After}
-  \begin{center}
-    \begin{minipage}[c]{.6\textwidth}
-      \begin{minted}{clojure}
-(defrecord Rectangle [width height])
-(defrecord Square [side])
-
-(defn set-width [x width]
-  (Rectangle. width (:height x)))
-(defn set-height [x height]
-  (Rectangle. (:width x) height))
-
-(defmethod set-side Square [x side]
-  (Square. side))
-
-(defmulti area class)
-(defmethod area Rectangle [x]
-  (* (:width x) (:height x)))
-(defmethod area Square [x]
-  (* (:side x) (:side x)))
-      \end{minted}
-    \end{minipage}
-    \begin{minipage}[c]{.35\textwidth}
-      \begin{center}
-        \resizebox*{.93\textwidth}{!}{\includegraphics{barbara-liskov}}\\
-        Barbara Liskov
-      \end{center}
-    \end{minipage}
   \end{center}
 \end{slide}
 
@@ -312,6 +278,43 @@
     ``The Liskov Substitution Principle states, among other constraints, that a subtype is not substitutable for its super type
     if it strengthens its operations' preconditions, or weakens its operations' postconditions''\footnote{\href{https://www.cs.ubc.ca/~ebani/papers/LiskofHappySad_ICSE-SEET_2018.pdf}{Baniassad: Making the Liskov Substitution Principle Happy and Sad}}\bigskip\\
     \resizebox*{.8\textwidth}{!}{\includegraphics{liskov}}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \heading{Liskov-Substitution - Example}
+  \begin{center}
+    \resizebox*{.8\textwidth}{!}{\includegraphics{liskov-example}}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \pdfbookmark[2]{After}{liskov-substitution-after}
+  \heading{Liskov-Substitution - After}
+  \begin{center}
+    \begin{minipage}[c]{.6\textwidth}
+      \begin{minted}{clojure}
+(defn set-width [x width]
+  (assoc x :width width))
+(defn set-height [x height]
+  (assoc x :height height))
+
+(defn set-side [x side]
+  (assoc x :side side))
+
+(defmulti area :type)
+(defmethod area ::rectangle [x]
+    (* (:width x) (:height x)))
+(defmethod area ::square [x]
+    (* (:side x) (:side x)))
+      \end{minted}
+    \end{minipage}
+    \begin{minipage}[c]{.35\textwidth}
+      \begin{center}
+        \resizebox*{.93\textwidth}{!}{\includegraphics{barbara-liskov}}\\
+        Barbara Liskov
+      \end{center}
+    \end{minipage}
   \end{center}
 \end{slide}
 
@@ -363,9 +366,9 @@
   \heading{Dependency Inversion - Before}
   \begin{center}
     \begin{minted}{clojure}
-(defn print-names [people stream]
+(defn print-names [people print-writer]
   (doseq [person people]
-         (.println stream (:name person))))
+         (.println print-writer (:name person))))
 ; ...
 (print-names [{:name "Alice"} {:name "Bob"}] *out*)
     \end{minted}
@@ -377,10 +380,10 @@
   \heading{Dependency Inversion - After}
   \begin{center}
     \begin{minted}{clojure}
-(defn print-names [people stream]
+(defn print-names [people writer]
   (doseq [person people]
-         (.write stream (:name person))
-         (.write stream "\n")))
+         (.write writer (:name person))
+         (.write writer "\n")))
 ; ...
 (print-names [{:name "Alice"} {:name "Bob"}] *out*)
 ; ...
@@ -405,6 +408,16 @@
   \begin{center}
     \textbf{The 5 corresponding principles are:}\footnote{\href{https://swarch.blog/the-five-principles-for-solid-software-design/}{Mike Lindner: The Five Principles For SOLID Software Design}}\\
     \resizebox*{.6\textwidth}{!}{\includegraphics{principles}}
+  \end{center}
+\end{slide}
+
+\begin{slide}
+  \pdfbookmark[1]{Thanks}{thanks}
+  \heading{\ }
+  \begin{center}
+    \begin{Huge}
+      Thanks
+    \end{Huge}
   \end{center}
 \end{slide}
 
