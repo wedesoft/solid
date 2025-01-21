@@ -28,8 +28,8 @@
      inkscape:document-units="mm"
      showgrid="true"
      inkscape:zoom="2.9255612"
-     inkscape:cx="201.15799"
-     inkscape:cy="128.69326"
+     inkscape:cx="128.00963"
+     inkscape:cy="129.03507"
      inkscape:window-width="1920"
      inkscape:window-height="1056"
      inkscape:window-x="0"
@@ -140,19 +140,14 @@
     <text
        xml:space="preserve"
        style="font-size:3.52778px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
-       x="39.043072"
-       y="101.73097"
+       x="40.12059"
+       y="103.76593"
        id="text1"><tspan
          sodipodi:role="line"
-         id="tspan1"
          style="font-size:3.52778px;stroke-width:0.264583"
-         x="39.043072"
-         y="101.73097">width==w0 &amp;&amp;</tspan><tspan
-         sodipodi:role="line"
-         style="font-size:3.52778px;stroke-width:0.264583"
-         x="39.043072"
-         y="106.14069"
-         id="tspan1024"> height==h0</tspan></text>
+         x="40.12059"
+         y="103.76593"
+         id="tspan1024">height==h0</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:4.23333px;line-height:1.25;font-family:sans-serif;stroke-width:0.264583"
