@@ -32,7 +32,6 @@
    bookmarksopen     = false,
    bookmarksnumbered = true,
    colorlinks        = true,
-   pdfstartpage      = {1}
 }
 
 \DeclarePanel{top}{
@@ -252,24 +251,23 @@
   \pdfbookmark[2]{Before}{liskov-substitution-before}
   \heading{Liskov-Substitution - Before}
   \begin{center}
-    \begin{minted}{python}
-class Rectangle:
-  def __init__(self, width, height):
-    self.width = width
-    self.height = height
-  def set_width(self, width):
-    self.width = width
-  def set_height(self, height):
-    self.height = height
+    \begin{minted}{clojure}
+(defrecord Rectangle [width height])
+(defrecord Square [width])
 
-class Square(Rectangle):
-  def __init__(self, side):
-    super().__init__(side, side)
-  def set_width(self, width):
-    super().set_width(width)
-    super().set_height(width)
-  def set_height(self, height):
-    self.set_width(height)
+(defmulti set-width (fn [x width] (class x)))
+(defmethod set-width Rectangle [x width]
+  (Rectangle. width (:height x)))
+(defmethod set-width Square [x width]
+  (Square. width))
+
+(defmulti set-height (fn [x height] (class x)))
+(defmethod set-height Rectangle [x height]
+  (Rectangle. (:width x) height))
+(defmethod set-height Square [x height]
+  (Square. height))
+
+(defn area [x] (* (:width x) (:height x)))
     \end{minted}
   \end{center}
 \end{slide}
@@ -279,24 +277,23 @@ class Square(Rectangle):
   \heading{Liskov-Substitution - After}
   \begin{center}
     \begin{minipage}[c]{.6\textwidth}
-      \begin{minted}{python}
-class Shape:
-  pass
+      \begin{minted}{clojure}
+(defrecord Rectangle [width height])
+(defrecord Square [side])
 
-class Rectangle(Shape):
-  def __init__(self, width, height):
-    self.width = width
-    self.height = height
-  def set_width(self, width):
-    self.width = width
-  def set_height(self, height):
-    self.height = height
+(defn set-width [x width]
+  (Rectangle. width (:height x)))
+(defn set-height [x height]
+  (Rectangle. (:width x) height))
 
-class Square(Shape):
-  def __init__(self, side):
-    self.side = side
-  def set_side(self, side):
-    self.side = side
+(defmethod set-side Square [x side]
+  (Square. side))
+
+(defmulti area class)
+(defmethod area Rectangle [x]
+  (* (:width x) (:height x)))
+(defmethod area Square [x]
+  (* (:side x) (:side x)))
       \end{minted}
     \end{minipage}
     \begin{minipage}[c]{.35\textwidth}
